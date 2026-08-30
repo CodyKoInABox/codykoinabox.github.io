@@ -1,17 +1,26 @@
-import { MailIcon, MessageCircleIcon } from "lucide-react"
+import { MailIcon } from "lucide-react"
 
-import { GitHubLogo, LinkedInLogo } from "@/components/social-icons"
+import { LocaleToggle } from "@/components/locale-toggle"
+import { GitHubLogo, LinkedInLogo, WhatsAppLogo } from "@/components/social-icons"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import type { Locale } from "@/lib/i18n/config"
 import type { Messages } from "@/lib/i18n/messages"
 import { site } from "@/lib/site"
 
-export function ProfileSidebar({ t }: { readonly t: Messages }) {
+export function ProfileSidebar({
+  locale,
+  t,
+}: {
+  readonly locale: Locale
+  readonly t: Messages
+}) {
   return (
-    <aside className="flex flex-col gap-4">
-      <div className="flex items-center gap-4 sm:flex-col sm:items-stretch">
-        <Avatar className="size-20 sm:size-auto sm:aspect-square sm:w-full">
+    <aside className="flex flex-col gap-6">
+      <div className="flex items-start gap-4 sm:gap-8">
+        <Avatar className="size-20 shrink-0 sm:size-72">
           <AvatarImage
             src={site.avatar}
             alt={site.fullName}
@@ -21,70 +30,84 @@ export function ProfileSidebar({ t }: { readonly t: Messages }) {
           />
           <AvatarFallback>CK</AvatarFallback>
         </Avatar>
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">
-            {site.fullName}
-          </h1>
-          <p className="text-lg text-muted-foreground">{site.name}</p>
+
+        <div className="flex min-w-0 flex-1 flex-col gap-5 sm:min-h-72 sm:justify-between">
+          <div>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              {site.fullName} / {site.name}
+            </h1>
+            <p className="text-lg text-muted-foreground">{site.tagline}</p>
+          </div>
+
+          <Separator />
+
+          <section className="flex flex-col gap-2.5">
+            <h2 className="text-lg font-medium">{t.contact}</h2>
+            <ul className="flex flex-col gap-2.5 text-base">
+              <li className="flex items-center gap-2.5">
+                <MailIcon className="size-5 shrink-0 text-muted-foreground" />
+                <a href={`mailto:${site.email}`} className="hover:underline">
+                  {site.email}
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <span className="flex size-5 shrink-0 items-center justify-center text-muted-foreground">
+                  <WhatsAppLogo className="size-5" />
+                </span>
+                <a
+                  href={site.whatsappHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:underline"
+                >
+                  {site.whatsapp}
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <Separator />
+
+          <div className="flex items-center gap-3">
+            <Button
+              render={<a href={site.website} target="_blank" rel="noreferrer" />}
+              nativeButton={false}
+              variant="outline"
+              size="lg"
+              className="h-12 px-4 text-base"
+            >
+              {t.personalPortfolio}
+            </Button>
+            <Button
+              render={<a href={site.github} target="_blank" rel="noreferrer" />}
+              nativeButton={false}
+              variant="outline"
+              size="icon-lg"
+              className="size-12 [&_svg:not([class*='size-'])]:size-6"
+              aria-label="GitHub"
+            >
+              <GitHubLogo />
+            </Button>
+            <Button
+              render={<a href={site.linkedin} target="_blank" rel="noreferrer" />}
+              nativeButton={false}
+              variant="outline"
+              size="icon-lg"
+              className="size-12 [&_svg:not([class*='size-'])]:size-6"
+              aria-label="LinkedIn"
+            >
+              <LinkedInLogo />
+            </Button>
+          </div>
+        </div>
+
+        <div className="flex shrink-0 flex-col gap-2">
+          <LocaleToggle locale={locale} label={t.toggleLocale} />
+          <ThemeToggle label={t.toggleTheme} />
         </div>
       </div>
 
-      <Button
-        render={<a href={site.website} target="_blank" rel="noreferrer" />}
-        nativeButton={false}
-        variant="outline"
-        className="w-full"
-      >
-        {t.personalPortfolio}
-      </Button>
-
-      <Separator />
-
-      <section className="flex flex-col gap-2">
-        <h2 className="text-sm font-medium">{t.contact}</h2>
-        <ul className="flex flex-col gap-2 text-sm">
-          <li className="flex items-center gap-2">
-            <MailIcon className="size-4 shrink-0 text-muted-foreground" />
-            <a href={`mailto:${site.email}`} className="hover:underline">
-              {site.email}
-            </a>
-          </li>
-          <li className="flex items-center gap-2">
-            <MessageCircleIcon className="size-4 shrink-0 text-muted-foreground" />
-            <a
-              href={site.whatsappHref}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:underline"
-            >
-              {site.whatsapp}
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <Separator />
-
-      <div className="flex gap-2">
-        <Button
-          render={<a href={site.github} target="_blank" rel="noreferrer" />}
-          nativeButton={false}
-          variant="outline"
-          size="icon"
-          aria-label="GitHub"
-        >
-          <GitHubLogo />
-        </Button>
-        <Button
-          render={<a href={site.linkedin} target="_blank" rel="noreferrer" />}
-          nativeButton={false}
-          variant="outline"
-          size="icon"
-          aria-label="LinkedIn"
-        >
-          <LinkedInLogo />
-        </Button>
-      </div>
+      <Separator className="data-horizontal:h-[2px]" />
     </aside>
   )
 }

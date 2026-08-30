@@ -8,4 +8,5 @@ export const site = {
   whatsapp: "+55 47 98905-6161",
   whatsappHref: "https://wa.me/5547989056161",
   avatar: "/avatar.jpg",
+  tagline: "Tech Portifolio",
 } as const
