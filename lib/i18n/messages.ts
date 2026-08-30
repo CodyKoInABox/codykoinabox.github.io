@@ -22,6 +22,9 @@ export const messages = {
     languages: "Languages",
     liveSite: "Live site",
     openSite: "Open site",
+    loading: "Loading",
+    emptyFolder: "Empty folder.",
+    fileUnavailable: "Can't preview this file.",
     filesTruncated: "Tree truncated.",
   },
   pt: {
@@ -45,6 +48,9 @@ export const messages = {
     languages: "Linguagens",
     liveSite: "Site",
     openSite: "Abrir site",
+    loading: "Carregando",
+    emptyFolder: "Pasta vazia.",
+    fileUnavailable: "Não dá pra pré-visualizar este arquivo.",
     filesTruncated: "Árvore truncada.",
   },
 } as const
