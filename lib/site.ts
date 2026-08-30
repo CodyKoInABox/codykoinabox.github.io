@@ -1,9 +1,11 @@
 export const site = {
   name: "CodyKoInABox",
   fullName: "Maruan Biasi El Achkar",
-  tagline: "Software. In a box.",
-  bio: "I write software at Agilis. Most of my college work lives in GitHub orgs.",
   github: "https://github.com/CodyKoInABox",
-  linkedin: "https://www.linkedin.com/in/maruanbiasi",
-  college: "https://github.com/stars/CodyKoInABox/lists/college",
+  website: "https://maruanbiasi.com",
+  linkedin: "https://www.linkedin.com/in/maruanbiasi/",
+  email: "contato@maruanbiasi.com",
+  whatsapp: "+55 47 98905-6161",
+  whatsappHref: "https://wa.me/5547989056161",
+  avatar: "/avatar.jpg",
 } as const

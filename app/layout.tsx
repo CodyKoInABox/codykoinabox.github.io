@@ -11,7 +11,7 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
 
 export const metadata: Metadata = {
   title: site.name,
-  description: `${site.fullName}. ${site.tagline}`,
+  description: site.fullName,
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

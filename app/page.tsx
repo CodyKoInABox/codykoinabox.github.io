@@ -1,11 +1,16 @@
-import { HomeIntro } from "@/components/home-intro"
-import { SiteHeader } from "@/components/site-header"
+import { localeRedirectScript } from "@/lib/i18n/locale"
 
-export default function Home() {
+export default function RootPage() {
   return (
-    <div className="mx-auto flex min-h-svh w-full max-w-lg flex-col px-6 py-8">
-      <SiteHeader />
-      <HomeIntro />
-    </div>
+    <main className="p-6 text-sm text-muted-foreground">
+      <script dangerouslySetInnerHTML={{ __html: localeRedirectScript }} />
+      <a href="/en/" className="hover:underline">
+        English
+      </a>
+      {" · "}
+      <a href="/pt/" className="hover:underline">
+        Português
+      </a>
+    </main>
   )
 }

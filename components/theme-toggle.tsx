@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { MoonIcon, SunIcon } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
 import {
   applyColorScheme,
   getStoredScheme,
@@ -11,7 +10,7 @@ import {
   type ColorScheme,
 } from "@/lib/theme"
 
-export function ThemeToggle() {
+export function ThemeToggle({ label }: { readonly label: string }) {
   const [scheme, setScheme] = useState<ColorScheme | null>(null)
 
   useEffect(() => {
@@ -40,15 +39,24 @@ export function ThemeToggle() {
     setScheme(next)
   }
 
+  const isDark = scheme === "dark"
+
   return (
-    <Button
+    <button
       type="button"
-      variant="ghost"
-      size="icon"
+      role="switch"
+      aria-checked={isDark}
+      aria-label={label}
       onClick={toggle}
-      aria-label={scheme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+      className="relative isolate flex h-8 w-16 shrink-0 cursor-pointer items-center rounded-full bg-muted p-1"
     >
-      {scheme === "dark" ? <SunIcon /> : <MoonIcon />}
-    </Button>
+      <span className="pointer-events-none absolute top-1 left-1 size-6 rounded-full bg-background shadow-sm motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-out dark:translate-x-8" />
+      <span className="relative z-10 flex flex-1 items-center justify-center text-foreground dark:text-muted-foreground">
+        <SunIcon className="size-3.5" />
+      </span>
+      <span className="relative z-10 flex flex-1 items-center justify-center text-muted-foreground dark:text-foreground">
+        <MoonIcon className="size-3.5" />
+      </span>
+    </button>
   )
 }
