@@ -16,6 +16,13 @@ export const messages = {
     projectsEmpty: "No projects match.",
     openOnGitHub: "Open on GitHub",
     viewProject: "View project",
+    backToProjects: "Projects",
+    readme: "README",
+    files: "Files",
+    languages: "Languages",
+    liveSite: "Live site",
+    openSite: "Open site",
+    filesTruncated: "Tree truncated.",
   },
   pt: {
     personalPortfolio: "Portfólio Pessoal",
@@ -32,6 +39,13 @@ export const messages = {
     projectsEmpty: "Nenhum projeto corresponde.",
     openOnGitHub: "Abrir no GitHub",
     viewProject: "Ver projeto",
+    backToProjects: "Projetos",
+    readme: "README",
+    files: "Arquivos",
+    languages: "Linguagens",
+    liveSite: "Site",
+    openSite: "Abrir site",
+    filesTruncated: "Árvore truncada.",
   },
 } as const
 

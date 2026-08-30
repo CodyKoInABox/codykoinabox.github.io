@@ -1,0 +1,20 @@
+{
+  "slug": "codykoinabox-atividade-olap-camargo",
+  "branch": "main",
+  "readme": "# Atividade prática em OLAP\n\n- **Alunos:** Maruan Biasi El Achkar e Ricardo Falcão Schlieper\n- **Professor:** Luiz Carlos Camargo\n- **Matéria**: Análise Preditiva\n- **Repositório**: https://github.com/CodyKoInABox/atividade-olap-camargo\n- **COLAB:** https://colab.research.google.com/drive/1ejK5VJwII59fI6EGnCPMWpFoSD26N_QB?usp=sharing\n",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "olap_atividade.ipynb"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "Jupyter Notebook",
+      "bytes": 23652,
+      "percent": 100,
+      "color": "#DA5B0B"
+    }
+  ],
+  "site": null
+}

@@ -7,16 +7,18 @@ import { cn } from "@/lib/utils"
 export function LocaleToggle({
   locale,
   label,
+  rest = "/",
 }: {
   readonly locale: Locale
   readonly label: string
+  readonly rest?: `/${string}`
 }) {
   const isPt = locale === "pt"
 
   function toggle() {
     const next: Locale = isPt ? "en" : "pt"
     persistLocale(next)
-    window.location.assign(`/${next}/`)
+    window.location.assign(`/${next}${rest}`)
   }
 
   return (

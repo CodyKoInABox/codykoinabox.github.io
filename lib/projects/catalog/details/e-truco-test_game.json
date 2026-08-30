@@ -1,0 +1,9 @@
+{
+  "slug": "e-truco-test_game",
+  "branch": "main",
+  "readme": "# E-Truco Test Game\n### This is a terminal-ran test version of our truco game, with focus on game logic.\n\n---\n\n\n### To run:\n\n- **Open the terminal**\n\n![image](https://github.com/E-truco/test_game/assets/125526050/8c55b926-9805-4b88-b5eb-b51d4b039a58)\n\n- **CD into the repo's folder**\n\n![image](https://github.com/E-truco/test_game/assets/125526050/63d7b77a-ffee-4a69-a949-a6750640d583)\n\n- **Use the command: dart testgame.dart**\n\n![image](https://github.com/E-truco/test_game/assets/125526050/0275cc01-6920-4b30-ba8e-89d39bde68c8)\n\n- **Follow the instructions**\n\n![image](https://github.com/E-truco/test_game/assets/125526050/505ef83f-14f5-415c-b797-03c5a90c5911)\n\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": null
+}

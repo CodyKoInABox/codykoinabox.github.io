@@ -1,0 +1,9 @@
+{
+  "slug": "machineneyarning-knn-poker",
+  "branch": "main",
+  "readme": "# Tarefa de KNN com Dataset de Poker\n\n### Dataset: https://archive.ics.uci.edu/dataset/158/poker+hand\n**Cattral R, Oppacher F. Poker Hand [dataset]. 2002. UCI Machine Learning Repository. Available from: https://doi.org/10.24432/C5KW38.**\n\n--------------------\n\n**Objetivo:**\nAplicar e avaliar o algoritmo K-Nearest Neighbors (KNN) para resolver um problema de\nclassificação.\n\n\n**Descrição da Atividade:**\nDeve desenvolver um modelo de Machine Learning capaz de classificar novas instâncias de dados\ncom base em suas características.\n\n\n**Orientações:**\n1. Escolher um dos datasets do Repositório de dataset para Machine Learning do link sugerido\nabaixo ou qualquer outro dataset de classificação de sua preferência.\nhttp://archive.ics.uci.edu/ml/index.php\n2. Realizar as etapas de pré-processamento.\n3. Realizar treinamento e classificação.\n4. Realizar avaliação e análise.\n\n\n**Orientações finais:**\n• Datasets externos devem ser hospedados em seu google drive e linkado ao Google Colab\nNotebook.\n• O link de donwload do Dataset escolhido deve estar disponível no Notebook Code.\n• Atividade individual.\n• Entrega do link público do Google Colab Notebook.\n• Nota: 50% da N1\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": null
+}

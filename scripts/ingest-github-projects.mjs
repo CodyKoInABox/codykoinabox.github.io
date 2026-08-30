@@ -1,9 +1,14 @@
 /**
  * Seeds lib/projects/catalog/github.ts from GitHub star lists + public repos.
+ * Also writes README / tree / linguist / site into catalog/details/{slug}.json.
  * Does not run at build time. Re-run when lists change:
  *   node scripts/ingest-github-projects.mjs
+ *   node scripts/ingest-github-projects.mjs --details-only
+ *   node scripts/ingest-github-projects.mjs --skip-details
+ *   node scripts/ingest-github-projects.mjs --force-details
+ * Set GITHUB_TOKEN to avoid the 60 req/hour cap.
  */
-import { writeFile } from "node:fs/promises"
+import { access, mkdir, readFile, writeFile } from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -20,6 +25,11 @@ const LISTS = [
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..")
 const outFile = path.join(root, "lib/projects/catalog/github.ts")
+const detailsDir = path.join(root, "lib/projects/catalog/details")
+const colorsFile = path.join(root, "lib/projects/linguist-colors.json")
+const MAX_FILES = 400
+const MAX_README = 100_000
+const args = new Set(process.argv.slice(2))
 
 function decode(html) {
   return html
@@ -150,54 +160,296 @@ export const githubProjects = ${JSON.stringify(projects, null, 2)} as const sati
 `
 }
 
-const owned = await fetchOwnedRepos()
-const ownedByKey = new Map(owned.map((item) => [keyOf(item.owner, item.repo), item]))
+class RateLimitError extends Error {
+  constructor() {
+    super("GitHub rate limit")
+    this.name = "RateLimitError"
+  }
+}
 
-const listedKind = new Map()
-const listedItem = new Map()
+async function fileExists(file) {
+  try {
+    await access(file)
+    return true
+  } catch {
+    return false
+  }
+}
 
-for (const list of LISTS) {
-  const items = await fetchList(list.slug)
-  for (const item of items) {
+async function githubApi(url, accept = "application/vnd.github+json") {
+  const headers = {
+    "User-Agent": UA,
+    Accept: accept,
+    "X-GitHub-Api-Version": "2022-11-28",
+  }
+  if (process.env.GITHUB_TOKEN) {
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`
+  }
+  return fetch(url, { headers })
+}
+
+function linguistShares(bytesByLanguage, colors) {
+  const entries = Object.entries(bytesByLanguage).filter(([, bytes]) => bytes > 0)
+  entries.sort((a, b) => b[1] - a[1])
+  const total = entries.reduce((sum, [, bytes]) => sum + bytes, 0)
+  if (total === 0) return []
+  return entries.map(([name, bytes]) => ({
+    name,
+    bytes,
+    percent: (bytes / total) * 100,
+    color: colors[name] || "#858585",
+  }))
+}
+
+function normalizeHomepage(homepage) {
+  if (typeof homepage !== "string") return null
+  const trimmed = homepage.trim()
+  if (!trimmed) return null
+  const href = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`
+  try {
+    const parsed = new URL(href)
+    if (parsed.hostname === "github.com" || parsed.hostname.endsWith(".github.com")) {
+      return null
+    }
+    return parsed.href
+  } catch {
+    return null
+  }
+}
+
+async function fetchJson(url) {
+  const response = await githubApi(url)
+  if (response.status === 403 || response.status === 429) {
+    throw new RateLimitError()
+  }
+  if (response.status === 404) return null
+  if (!response.ok) {
+    throw new Error(`${response.status} ${url}`)
+  }
+  return JSON.parse(await response.text())
+}
+
+async function fetchRepoHtml(owner, repo) {
+  const response = await fetch(`https://github.com/${owner}/${repo}`, {
+    headers: { "User-Agent": UA, Accept: "text/html" },
+  })
+  if (!response.ok) return ""
+  return response.text()
+}
+
+function parseRepoHtml(html) {
+  const branch = html.match(/"defaultBranch":"([^"]+)"/)?.[1] ?? "main"
+  const pagesUrl = html.match(/"pagesUrl":"(https?:\/\/[^"]+)"/)?.[1] ?? null
+  const homepage = html.match(/"homepageUrl":"(https?:\/\/[^"]+)"/)?.[1] ?? null
+  return { branch, pagesUrl, homepage }
+}
+
+function siteFromHtml({ homepage, pagesUrl }) {
+  const fromHome = normalizeHomepage(homepage)
+  if (fromHome) return { url: fromHome }
+  const fromPages = normalizeHomepage(pagesUrl)
+  if (fromPages) return { url: fromPages }
+  return null
+}
+
+async function fetchRawReadme(owner, repo, branch) {
+  const names = ["README.md", "README.MD", "readme.md", "README"]
+  for (const name of names) {
+    const response = await fetch(
+      `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${name}`,
+      { headers: { "User-Agent": UA } }
+    )
+    if (!response.ok) continue
+    const text = await response.text()
+    if (!text || text.startsWith("404:")) continue
+    return text.length > MAX_README ? text.slice(0, MAX_README) : text
+  }
+  return null
+}
+
+let apiDisabled = false
+
+async function fetchJsonSoft(url) {
+  if (apiDisabled) return null
+  try {
+    return await fetchJson(url)
+  } catch (error) {
+    if (error instanceof RateLimitError) {
+      apiDisabled = true
+      console.warn("GitHub API rate limit. README/site still ingest; re-run with GITHUB_TOKEN for tree/linguist.")
+      return null
+    }
+    throw error
+  }
+}
+
+async function fetchDetail(item, colors) {
+  const html = await fetchRepoHtml(item.owner, item.repo)
+  const parsed = parseRepoHtml(html)
+  const branch = parsed.branch
+  const repoUrl = `https://api.github.com/repos/${item.owner}/${item.repo}`
+
+  const [readme, languages, tree] = await Promise.all([
+    fetchRawReadme(item.owner, item.repo, branch),
+    fetchJsonSoft(`${repoUrl}/languages`),
+    fetchJsonSoft(
+      `${repoUrl}/git/trees/${encodeURIComponent(branch)}?recursive=1`
+    ),
+  ])
+
+  const blobs = Array.isArray(tree?.tree)
+    ? tree.tree.filter((entry) => entry.type === "blob" && typeof entry.path === "string")
+    : []
+
+  return {
+    slug: item.slug,
+    branch,
+    readme,
+    files: blobs.slice(0, MAX_FILES).map((entry) => entry.path),
+    truncated: tree?.truncated === true || blobs.length > MAX_FILES,
+    scanned: tree != null,
+    languages: linguistShares(languages ?? {}, colors),
+    site: siteFromHtml(parsed),
+  }
+}
+
+async function ingestDetails(projects) {
+  const github = projects.filter((project) => project.source.type === "github")
+  await mkdir(detailsDir, { recursive: true })
+  const colors = JSON.parse(await readFile(colorsFile, "utf8"))
+  const force = args.has("--force-details")
+  const concurrency = process.env.GITHUB_TOKEN ? 4 : 2
+
+  let written = 0
+  let skipped = 0
+  let failed = 0
+  let index = 0
+  let stopped = false
+
+  async function worker() {
+    while (!stopped) {
+      const current = index
+      index += 1
+      if (current >= github.length) return
+
+      const project = github[current]
+      const file = path.join(detailsDir, `${project.slug}.json`)
+      if (!force && (await fileExists(file))) {
+        const existing = JSON.parse(await readFile(file, "utf8"))
+        const scanned =
+          existing.scanned === true ||
+          (Array.isArray(existing.files) && existing.files.length > 0)
+        if (scanned || apiDisabled) {
+          skipped += 1
+          continue
+        }
+      }
+
+      try {
+        const detail = await fetchDetail(
+          {
+            slug: project.slug,
+            owner: project.source.owner,
+            repo: project.source.repo,
+          },
+          colors
+        )
+        await writeFile(file, `${JSON.stringify(detail, null, 2)}\n`, "utf8")
+        written += 1
+        if (written % 10 === 0 || written === github.length) {
+          console.log(`details ${written + skipped}/${github.length}`)
+        }
+      } catch (error) {
+        if (error instanceof RateLimitError) {
+          stopped = true
+          throw error
+        }
+        failed += 1
+        console.warn(`details skip ${project.slug}: ${error.message}`)
+      }
+    }
+  }
+
+  try {
+    await Promise.all(
+      Array.from({ length: Math.min(concurrency, github.length) }, () => worker())
+    )
+  } catch (error) {
+    if (!(error instanceof RateLimitError)) throw error
+    console.warn(
+      "GitHub rate limit. Re-run with GITHUB_TOKEN (skips existing files)."
+    )
+  }
+
+  console.log(`details wrote ${written}, skipped ${skipped}, failed ${failed}`)
+}
+
+let projects
+
+if (args.has("--details-only")) {
+  const source = await readFile(outFile, "utf8")
+  const match = source.match(
+    /export const githubProjects = (\[[\s\S]*\]) as const satisfies/
+  )
+  if (!match) throw new Error("cannot parse github.ts")
+  projects = JSON.parse(match[1])
+  console.log(`loaded ${projects.length} from github.ts`)
+} else {
+  const owned = await fetchOwnedRepos()
+  const ownedByKey = new Map(
+    owned.map((item) => [keyOf(item.owner, item.repo), item])
+  )
+
+  const listedKind = new Map()
+  const listedItem = new Map()
+
+  for (const list of LISTS) {
+    const items = await fetchList(list.slug)
+    for (const item of items) {
+      const key = keyOf(item.owner, item.repo)
+      if (listedKind.has(key)) continue
+      listedKind.set(key, list.kind)
+      listedItem.set(key, ownedByKey.get(key) ?? item)
+    }
+  }
+
+  projects = []
+  const seenSlug = new Set()
+
+  for (const [key, kind] of listedKind) {
+    const item = listedItem.get(key)
+    const project = toProject(kind, item)
+    if (seenSlug.has(project.slug)) {
+      throw new Error(`duplicate slug ${project.slug}`)
+    }
+    seenSlug.add(project.slug)
+    projects.push(project)
+  }
+
+  for (const item of owned) {
     const key = keyOf(item.owner, item.repo)
     if (listedKind.has(key)) continue
-    listedKind.set(key, list.kind)
-    listedItem.set(key, ownedByKey.get(key) ?? item)
+    if (EXCLUDE.has(key)) continue
+    const project = toProject("other", item)
+    if (seenSlug.has(project.slug)) {
+      throw new Error(`duplicate slug ${project.slug}`)
+    }
+    seenSlug.add(project.slug)
+    projects.push(project)
   }
+
+  projects.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
+
+  await writeFile(outFile, serialize(projects), "utf8")
+
+  const counts = { personal: 0, college: 0, professional: 0, other: 0 }
+  for (const project of projects) counts[project.kind] += 1
+  console.log(
+    `wrote ${projects.length} projects → ${path.relative(root, outFile)}`,
+    counts
+  )
 }
 
-const projects = []
-const seenSlug = new Set()
-
-for (const [key, kind] of listedKind) {
-  const item = listedItem.get(key)
-  const project = toProject(kind, item)
-  if (seenSlug.has(project.slug)) {
-    throw new Error(`duplicate slug ${project.slug}`)
-  }
-  seenSlug.add(project.slug)
-  projects.push(project)
+if (!args.has("--skip-details")) {
+  await ingestDetails(projects)
 }
-
-for (const item of owned) {
-  const key = keyOf(item.owner, item.repo)
-  if (listedKind.has(key)) continue
-  if (EXCLUDE.has(key)) continue
-  const project = toProject("other", item)
-  if (seenSlug.has(project.slug)) {
-    throw new Error(`duplicate slug ${project.slug}`)
-  }
-  seenSlug.add(project.slug)
-  projects.push(project)
-}
-
-projects.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
-
-await writeFile(outFile, serialize(projects), "utf8")
-
-const counts = { personal: 0, college: 0, professional: 0, other: 0 }
-for (const project of projects) counts[project.kind] += 1
-console.log(
-  `wrote ${projects.length} projects → ${path.relative(root, outFile)}`,
-  counts
-)

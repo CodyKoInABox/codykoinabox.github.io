@@ -1,0 +1,28 @@
+{
+  "slug": "codykoinabox-html-margins-pri",
+  "branch": "main",
+  "readme": null,
+  "files": [
+    "LICENSE",
+    "index.html",
+    "style.css"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "CSS",
+      "bytes": 1204,
+      "percent": 50.41876046901172,
+      "color": "#663399"
+    },
+    {
+      "name": "HTML",
+      "bytes": 1184,
+      "percent": 49.58123953098828,
+      "color": "#e34c26"
+    }
+  ],
+  "site": {
+    "url": "https://codykoinabox.github.io/html-margins-pri/"
+  }
+}

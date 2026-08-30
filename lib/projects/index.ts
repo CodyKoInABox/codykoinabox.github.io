@@ -8,13 +8,19 @@ import {
   type ProjectKind,
 } from "@/lib/projects/types"
 
+export { buildFileTree, type FileTreeNode } from "@/lib/projects/tree"
+
 export {
   githubSlug,
   projectKinds,
+  type LinguistShare,
   type Localized,
   type Project,
+  type ProjectDetail,
+  type ProjectDetailOverride,
   type ProjectKind,
   type ProjectOverride,
+  type ProjectSite,
   type ProjectSource,
 } from "@/lib/projects/types"
 
@@ -52,6 +58,10 @@ const catalog = mergeCatalog()
 
 export function getProjects() {
   return catalog
+}
+
+export function getProject(slug: string) {
+  return catalog.find((project) => project.slug === slug)
 }
 
 export function filterProjects({

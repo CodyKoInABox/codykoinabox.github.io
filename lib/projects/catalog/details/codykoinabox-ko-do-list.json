@@ -1,0 +1,84 @@
+{
+  "slug": "codykoinabox-ko-do-list",
+  "branch": "main",
+  "readme": "# Ko-Do List\n\nA fast, local-first task manager with a focused interface and optional GitHub-powered device sync. Built as an open-source fan project by **codykoinabox**.\n\nKo-Do works instantly without an account. Signed-out data stays in the browser; signing in with GitHub adds encrypted transport and per-user Supabase storage while preserving the local-first experience.\n\n## Features\n\n- Fast task capture plus a detailed task editor\n- Inbox, Today, Upcoming, All tasks, and Completed views\n- Due dates with quick scheduling shortcuts\n- High, medium, low, and unprioritized tasks\n- Custom color-coded tags\n- Search, priority filtering, and four sort modes\n- Pointer, touch, and keyboard-friendly manual reordering\n- Undoable task deletion\n- Light, dark, and system themes\n- JSON backup and restore\n- Cross-tab local-storage updates\n- Optional GitHub sign-in and automatic cross-device sync\n- Offline edits, deletion tombstones, stale-write protection, and realtime refresh\n- Account-scoped browser caches to keep users separate on shared devices\n- Responsive desktop, tablet, and mobile layouts\n- Keyboard shortcuts: `N` to add, `/` to search, and `T` to toggle theme\n- Accessible controls, focus states, and reduced-motion support\n\nWhen signed out, no task data is sent to a server. When signed in, tasks and tags are synchronized to the configured Supabase project and protected by per-user Row Level Security.\n\n## Run locally\n\nRequires Node.js 24 and npm.\n\n```bash\nnpm install\nnpm run dev\n```\n\nOpen the local URL printed by Vite.\n\nThe app remains local-only when Supabase variables are absent. To enable GitHub sign-in and synchronization, follow [the sync setup guide](docs/SYNC_SETUP.md).\n\n## Quality checks\n\n```bash\nnpm run check\n```\n\nThis runs ESLint, the Vitest suite, TypeScript, and the production build. The built site is written to `dist/`.\n\n## Deploy to GitHub Pages\n\nThe repository includes `.github/workflows/deploy-pages.yml`. It verifies and builds the app, uploads `dist/`, and deploys it through GitHub Pages whenever `main` is pushed. It can also be started manually from the Actions tab.\n\nFor the first deployment:\n\n1. Open the repository on GitHub.\n2. Go to **Settings → Pages**.\n3. Set **Source** to **GitHub Actions**.\n4. Push to `main`, or run the workflow manually.\n\nVite uses relative production asset paths, so the build works at both a user site and a repository subpath without hard-coding the repository name.\n\nCloud-enabled deployments also require the two public repository variables documented in [the sync setup guide](docs/SYNC_SETUP.md#7-configure-github-pages).\n\n## Stack\n\n- React 19 + TypeScript\n- Vite\n- Radix UI primitives and shadcn-style owned components\n- Supabase Auth, Postgres, Row Level Security, and Realtime\n- dnd-kit for accessible drag-and-drop\n- Lucide icons\n- Vitest and Testing Library\n\n## Roadmap\n\n- Shared lists without compromising the local-first default\n- Optional end-to-end encrypted task payloads\n\n## Contributing\n\nIssues and pull requests are welcome. Run `npm run check` before submitting changes.\n\n## License\n\n[MIT](LICENSE)\n\nKo-Do List is an independent fan project and is not affiliated with or endorsed by Cody Ko.\n",
+  "files": [
+    ".github/workflows/deploy-pages.yml",
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "docs/SYNC_SETUP.md",
+    "eslint.config.js",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "public/favicon.svg",
+    "src/App.test.tsx",
+    "src/App.tsx",
+    "src/components/settings-dialog.tsx",
+    "src/components/sidebar.tsx",
+    "src/components/sync-dialog.test.tsx",
+    "src/components/sync-dialog.tsx",
+    "src/components/task-dialog.tsx",
+    "src/components/task-list.tsx",
+    "src/components/ui/button.tsx",
+    "src/hooks/use-auth.ts",
+    "src/hooks/use-cloud-sync.ts",
+    "src/hooks/use-persistent-data.ts",
+    "src/hooks/use-theme.ts",
+    "src/lib/dates.ts",
+    "src/lib/supabase.ts",
+    "src/lib/sync.test.ts",
+    "src/lib/sync.ts",
+    "src/lib/tasks.test.ts",
+    "src/lib/tasks.ts",
+    "src/lib/utils.ts",
+    "src/main.tsx",
+    "src/styles.css",
+    "src/test/setup.ts",
+    "src/types.ts",
+    "src/vite-env.d.ts",
+    "supabase/migrations/202608170001_create_sync_items.sql",
+    "tsconfig.app.json",
+    "tsconfig.json",
+    "tsconfig.node.json",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "TypeScript",
+      "bytes": 96750,
+      "percent": 67.9095101390478,
+      "color": "#3178c6"
+    },
+    {
+      "name": "CSS",
+      "bytes": 41321,
+      "percent": 29.003502516336887,
+      "color": "#663399"
+    },
+    {
+      "name": "PLpgSQL",
+      "bytes": 3104,
+      "percent": 2.1787195811018534,
+      "color": "#336790"
+    },
+    {
+      "name": "JavaScript",
+      "bytes": 727,
+      "percent": 0.5102864482799767,
+      "color": "#f1e05a"
+    },
+    {
+      "name": "HTML",
+      "bytes": 567,
+      "percent": 0.39798131523348945,
+      "color": "#e34c26"
+    }
+  ],
+  "site": {
+    "url": "https://codykoinabox.github.io/ko-do-list/"
+  }
+}

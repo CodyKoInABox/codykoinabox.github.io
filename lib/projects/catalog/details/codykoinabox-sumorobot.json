@@ -1,0 +1,51 @@
+{
+  "slug": "codykoinabox-sumorobot",
+  "branch": "main",
+  "readme": "# PAC | Sumo Robot\n\n[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P7MWF8N)\n\n## 3x Competition Winner Code 2023 🔥 Verdinho 420 km/h team 🍀\n## Codigo 3x Campeao da Competicao 2023 🚀 Time Verdinho 420 km/h 🍀\n\n<img src=\"https://github.com/CodyKoInABox/sumoRobot/assets/125526050/815219b6-0767-414a-9c81-37cfd9076a1a\" width=\"480\" height=\"550\">  \n\n### [Codigos do robo real (arduino)](https://github.com/CodyKoInABox/sumo-robot-PAC/tree/main/arduino) <sub>-> os codigos do robo real ficam aqui (robo fisico)</sub>\n\n### [Codigos do Tinkercad](https://github.com/CodyKoInABox/sumo-robot-PAC/tree/main/tinkercad) <sub>-> os codigos do robo no tinkercad ficam aqui (robo virtual)</sub>\n\n### [Codigo orientado a objetos](https://github.com/CodyKoInABox/sumoRobot/tree/main/arduino/OOP) <sub>-> a versao orientada a objetos fica aqui</sub>\n\n### [Codigo Bluetooth](https://github.com/CodyKoInABox/sumoRobot/tree/main/arduino/bluetooth) <sub>-> o codigo que controla o robo via Bluetooth fica aqui</sub>\n",
+  "files": [
+    ".github/FUNDING.yml",
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "arduino/OOP/README.md",
+    "arduino/OOP/Sensor.cpp",
+    "arduino/OOP/Sensor.h",
+    "arduino/OOP/SuperMotor.cpp",
+    "arduino/OOP/SuperMotor.h",
+    "arduino/OOP/main.ino",
+    "arduino/README.md",
+    "arduino/SECRET.md",
+    "arduino/bluetooth/README.md",
+    "arduino/bluetooth/SuperMotor.cpp",
+    "arduino/bluetooth/SuperMotor.h",
+    "arduino/bluetooth/control.ino",
+    "arduino/bluetooth/debug.ino",
+    "arduino/bluetooth/led.ino",
+    "arduino/bluetooth/move.ino",
+    "arduino/bluetooth/new.ino",
+    "arduino/bluetooth/test.ino",
+    "arduino/code.ino",
+    "arduino/evenNewerCode.ino",
+    "arduino/linhaBranca.ino",
+    "arduino/newCode.ino",
+    "arduino/performance.ino",
+    "old/README.md",
+    "old/tinkercad/README.md",
+    "old/tinkercad/ada.ino",
+    "old/tinkercad/evenNewerCode.ino",
+    "old/tinkercad/newCode.ino",
+    "old/tinkercad/sumo-robot-pac.pdf",
+    "tinkercad/README.md",
+    "tinkercad/tinkercadCode.ino"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "C++",
+      "bytes": 31314,
+      "percent": 100,
+      "color": "#f34b7d"
+    }
+  ],
+  "site": null
+}

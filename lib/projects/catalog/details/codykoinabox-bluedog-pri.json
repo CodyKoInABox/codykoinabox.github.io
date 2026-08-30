@@ -1,0 +1,73 @@
+{
+  "slug": "codykoinabox-bluedog-pri",
+  "branch": "main",
+  "readme": "# Blue Dog\n\nWebsite estático criado a partir do layout de referência da Blue Dog.",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "assets/0dc33713e4.png",
+    "assets/All posts • Instagram.jpg",
+    "assets/Animal Shelter free icons designed by Magnific.png",
+    "assets/Areia-Higienica-MyHug-Milho-e-Mandioca-Granulos-Finos-4kg.png",
+    "assets/Cat Bath free icons designed by Magnific.png",
+    "assets/ChatGPT Image 2 de ago. de 2026, 02_29_10 (1).png",
+    "assets/ChatGPT Image 2 de ago. de 2026, 04_05_01 (1).png",
+    "assets/Godzilla free icons designed by Magnific.png",
+    "assets/Medicine free icons designed by Magnific.png",
+    "assets/Pet Food free icons designed by photo3idea_studio.png",
+    "assets/Pet Shampoo free icons designed by Mihimihi.png",
+    "assets/Stylist sunglasses for Chihuahua.jpg",
+    "assets/avocado pelucia.png",
+    "assets/blue dog.png",
+    "assets/blue user.png",
+    "assets/carrinho branco.png",
+    "assets/comida cachorro.png",
+    "assets/coracao azul.png",
+    "assets/e9463a0d-d111-4bed-892c-b4d02edab77d (1).png",
+    "assets/flechinha.png",
+    "assets/hotel pet.png",
+    "assets/images.png",
+    "assets/insta verde.png",
+    "assets/kabo-p6yH8VmGqxo-unsplash.png",
+    "assets/output-onlinepngtools (1).png",
+    "assets/output-onlinepngtools (2).png",
+    "assets/output-onlinepngtools (3).png",
+    "assets/output-onlinepngtools (4).png",
+    "assets/output-onlinepngtools (5).png",
+    "assets/output-onlinepngtools.png",
+    "assets/output-smallpngtools (1).png",
+    "assets/output-smallpngtools (2).png",
+    "assets/output-smallpngtools (3).png",
+    "assets/output-smallpngtools (4).png",
+    "assets/output-smallpngtools (5).png",
+    "assets/output-smallpngtools (6).png",
+    "assets/output-smallpngtools (7).png",
+    "assets/output-smallpngtools (8).png",
+    "assets/output-smallpngtools (9).png",
+    "assets/output-smallpngtools.png",
+    "assets/star sem ong.png",
+    "assets/tiktok verde.png",
+    "assets/veterinario.png",
+    "assets/yo.jpg",
+    "index.html",
+    "style.css"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "CSS",
+      "bytes": 23778,
+      "percent": 58.13265530645674,
+      "color": "#663399"
+    },
+    {
+      "name": "HTML",
+      "bytes": 17125,
+      "percent": 41.86734469354326,
+      "color": "#e34c26"
+    }
+  ],
+  "site": {
+    "url": "https://codykoinabox.github.io/bluedog-pri/"
+  }
+}

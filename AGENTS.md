@@ -9,6 +9,9 @@ Portfólio pessoal estático. Sem backend.
 - copy i18n: `lib/i18n/messages.ts` (`en` / `pt`, rotas `/[locale]`)
 - tema: `lib/theme.ts` (light/dark + system)
 - UI: `components/`, shadcn em `components/ui/`
+- catálogo: `lib/projects/` (lista em `catalog/github.ts`, extras em `catalog/manual.ts`)
+- páginas de projeto: `app/[locale]/projects/[slug]/`, módulos em `components/project/modules/`
+- detalhes (README / tree / linguist / site): `lib/projects/catalog/details/*.json` via `npm run ingest:projects`
 
 **Regras**
 - 100% estático. Sem API routes, sem server state.

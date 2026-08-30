@@ -29,8 +29,9 @@ export const localeRedirectScript = `{
   location.replace("/" + locale + "/");
 }`
 
-export function localePath(locale: Locale) {
-  return `/${locale}/`
+export function localePath(locale: Locale, rest = "/") {
+  const tail = rest.startsWith("/") ? rest : `/${rest}`
+  return `/${locale}${tail}`
 }
 
 export { isLocale }

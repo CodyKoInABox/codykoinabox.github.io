@@ -1,0 +1,9 @@
+{
+  "slug": "machineneyarning-seismiccluster",
+  "branch": "main",
+  "readme": "# Atividade de Clusterização\n\n- **Aluno:** Maruan Biasi El Achkar\n- **Dataset:** Global Earthquake-Tsunami Risk Assessment Dataset\n- **Fonte:** https://www.kaggle.com/datasets/ahmeduzaki/global-earthquake-tsunami-risk-assessment-dataset\n- **Objetivo:** Clusterização geográfica - Iidentificar regiões do mundo com perfis sísmicos semelhantes.\n\n---\n### Google Colab: https://colab.research.google.com/drive/1SgAhRcBlwvrNJYi5aOnu4i1lqn3UAmPL?usp=sharing\n\n##### Google Colab com Modelo de Regressão Junto: https://colab.research.google.com/drive/1Ur-HOe-lJGxtiUsxz-oVdDbSwK9BliRn?usp=sharing\n---\n\n## Resultado Final\n<img width=\"1493\" height=\"490\" alt=\"download (6)\" src=\"https://github.com/user-attachments/assets/3a5a6819-5c88-4dab-85e4-01c69709f9d1\" />\n\n\n\n----------\n# Instruções da Atividade\n\n### Contexto:\nA análise de clusterização é uma técnica fundamental de aprendizado de máquina não supervisionado, utilizada\npara descobrir agrupamentos naturais e padrões ocultos em um conjunto de dados. O objetivo é agrupar pontos de dados\nque são semelhantes entre si em \"clusters\", mantendo os grupos distintos uns dos outros.\n\n\n### Orientações:\n1. Aplicar um algoritmo de clusterização para particionar um conjunto de dados em diferentes segmentos.\n2. Escolher um dataset de sua preferência.\n3. Executar pré-processametno dos dados.\n4. Determinar um número ideal de clusters.\n5. Visualizar os resultados, avaliar e interpretar o significado de cada cluster.\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": null
+}

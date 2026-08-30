@@ -1,0 +1,52 @@
+{
+  "slug": "codykoinabox-codymarkdownpreview",
+  "branch": "main",
+  "readme": "# Cody's Markdown Preview\n\nA fast, private, browser-based Markdown editor with live preview and multi-file support.\n\n## Features\n\n- Write and preview GitHub-flavored Markdown\n- Keep multiple documents open in tabs\n- Import multiple `.md` or `.markdown` files\n- Download edited documents\n- Automatic local browser storage\n- Write, split, and preview layouts\n- Light, dark, and system themes\n- Responsive interface\n\nAll editing happens in your browser. No document content is sent to a server.\n\n## Local development\n\nRequires Node.js 20 or newer.\n\n```bash\nnpm install\nnpm run dev\n```\n\nCreate a production build with:\n\n```bash\nnpm run build\n```\n\n## GitHub Pages\n\nThe workflow at `.github/workflows/deploy-pages.yml` builds and deploys the site whenever `main` is pushed. In the repository's **Settings → Pages**, set the source to **GitHub Actions**.\n\nVite uses a relative base path, so the build works for both user sites and project sites without repository-specific configuration.\n\n## License\n\n[MIT](LICENSE) © 2026 Maruan Biasi El Achkar\n",
+  "files": [
+    ".github/workflows/deploy-pages.yml",
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "eslint.config.js",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "src/App.tsx",
+    "src/main.tsx",
+    "src/styles.css",
+    "tsconfig.app.json",
+    "tsconfig.json",
+    "tsconfig.node.json",
+    "vite.config.ts"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "TypeScript",
+      "bytes": 13268,
+      "percent": 49.09891573844503,
+      "color": "#3178c6"
+    },
+    {
+      "name": "CSS",
+      "bytes": 12627,
+      "percent": 46.72686230248307,
+      "color": "#663399"
+    },
+    {
+      "name": "JavaScript",
+      "bytes": 675,
+      "percent": 2.4978721829552604,
+      "color": "#f1e05a"
+    },
+    {
+      "name": "HTML",
+      "bytes": 453,
+      "percent": 1.6763497761166413,
+      "color": "#e34c26"
+    }
+  ],
+  "site": {
+    "url": "https://codykoinabox.github.io/codymarkdownpreview/"
+  }
+}

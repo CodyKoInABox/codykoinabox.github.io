@@ -36,6 +36,29 @@ export type Project = {
 
 export type ProjectOverride = Partial<Omit<Project, "slug">>
 
+export type LinguistShare = {
+  readonly name: string
+  readonly bytes: number
+  readonly percent: number
+  readonly color: string
+}
+
+export type ProjectSite = {
+  readonly url: string
+}
+
+export type ProjectDetail = {
+  readonly slug: string
+  readonly branch: string
+  readonly readme: string | null
+  readonly files: readonly string[]
+  readonly truncated: boolean
+  readonly languages: readonly LinguistShare[]
+  readonly site: ProjectSite | null
+}
+
+export type ProjectDetailOverride = Partial<Omit<ProjectDetail, "slug">>
+
 export function githubSlug(owner: string, repo: string) {
   return `${owner}-${repo}`.toLowerCase()
 }

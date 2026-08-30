@@ -1,0 +1,55 @@
+{
+  "slug": "codykoinabox-codyflix",
+  "branch": "main",
+  "readme": "# Codyflix\n<img src=\"https://user-images.githubusercontent.com/125526050/231312573-39e86f21-fe0f-4be5-bff9-aa3711eedff5.png\" alt=\"Codyflix logo\" width=\"400\"/>\n\n\n### A Netflix clone using React and Next.js!\n\nBased on a \"Code With Antonio\" youtube video: https://youtu.be/mqUN4N2q4qY\n\n\n<sub>**THIS IS <ins>NOT</ins> A COMMERCIAL PROJECT, IT WAS MADE FOR LEARNING PURPOSES ONLY, PLEASE DON'T SUE ME NETFLIX =)**</sub>\n",
+  "files": [
+    ".eslintrc.json",
+    ".gitignore",
+    "README.md",
+    "components/Input.tsx",
+    "global.d.ts",
+    "jsconfig.json",
+    "lib/prismadb.ts",
+    "next.config.js",
+    "package-lock.json",
+    "package.json",
+    "pages/_app.js",
+    "pages/api/[...nextauth].ts",
+    "pages/auth.tsx",
+    "pages/index.jsx",
+    "postcss.config.js",
+    "prisma/schema.prisma",
+    "public/favicon.ico",
+    "public/images/hero.jpg",
+    "public/images/logo.png",
+    "public/next.svg",
+    "public/vercel.svg",
+    "styles/globals.css",
+    "tailwind.config.js",
+    "tsconfig.json"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "TypeScript",
+      "bytes": 6707,
+      "percent": 88.64657679090668,
+      "color": "#3178c6"
+    },
+    {
+      "name": "JavaScript",
+      "bytes": 690,
+      "percent": 9.119746233148295,
+      "color": "#f1e05a"
+    },
+    {
+      "name": "CSS",
+      "bytes": 169,
+      "percent": 2.2336769759450172,
+      "color": "#663399"
+    }
+  ],
+  "site": {
+    "url": "https://codykoinabox.github.io/codyflix/"
+  }
+}

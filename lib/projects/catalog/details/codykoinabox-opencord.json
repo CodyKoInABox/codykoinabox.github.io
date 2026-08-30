@@ -1,0 +1,36 @@
+{
+  "slug": "codykoinabox-opencord",
+  "branch": "main",
+  "readme": "# Opencord\n\nOpencord is a Windows-first native peer-to-peer community app. Messages are\nstored locally in SQLite and missing history is synchronized directly from\nother group members when they reconnect.\n\n> [!WARNING]\n> This is an unaudited prototype, not production cryptographic software. Read\n> [the security model](docs/SECURITY.md) before using it for sensitive data.\n\n## What works\n\n- Native Rust desktop UI with no browser runtime\n- Four persistent themes, accent colors, compact/cozy layouts, UI scaling, and\n  editable peer profiles\n- Channel search, quick switching, per-channel drafts, reply/copy actions, and\n  responsive member panels\n- Encrypted groups, text channels, messages, and attachments (up to 8 MiB)\n- Signed invite capabilities (`opencord://join/...`)\n- Automatic LAN discovery with mDNS\n- Direct QUIC connections by UDP address, remembered peer endpoints, and\n  best-effort UPnP port mapping\n- Signed, per-author event logs with automatic missing-range reconciliation\n- Full history bootstrap for a new member from any online peer holding it\n- Peer-to-peer Opus voice calls with audio active only while joined\n- Peer-to-peer screen sharing with an idle-until-enabled capture worker\n- Local peer blocking\n- SQLite WAL storage containing ciphertext event bodies\n\n## Why this stack\n\nRust keeps the network, storage, audio, cryptography, and UI in one native\nprocess with predictable resource use. `egui` renders through `wgpu` on Windows;\nSQLite provides durable local indexing; Quinn carries direct QUIC sessions;\nCPAL and Opus provide compact audio. App-layer content uses\nXChaCha20-Poly1305, while persistent identities and events use Ed25519.\n\nWebRTC is not embedded in this prototype: Opus over QUIC keeps the binary and\nruntime smaller. A future ICE adapter can improve NAT traversal without\nchanging the event or identity model.\n\nSee [architecture](docs/ARCHITECTURE.md) and [wire protocol](docs/PROTOCOL.md)\nfor the design details.\n\n## Build on Windows\n\nPrerequisites:\n\n- Rust 1.95 or newer with the MSVC toolchain\n- Visual Studio 2022 Build Tools with **Desktop development with C++**\n\nFrom a Developer PowerShell:\n\n```powershell\ncargo test --all-targets\ncargo run --release\n```\n\nThe optimized executable is written to `target\\release\\opencord.exe`. Profile\ndata defaults to `%LOCALAPPDATA%\\CodyKoInABox\\Opencord`.\n\nWindows Firewall must allow inbound and outbound UDP for direct peers. The\ndefault listen address is `0.0.0.0:39217`.\n\n## Use it\n\n1. Start Opencord and create a group with the `+` button.\n2. Choose **Invite**, copy the capability, and send it privately to a peer.\n3. The peer uses the arrow button to import it. On the same LAN, discovery and\n   synchronization are automatic. For a reachable internet peer, use\n   **Connect** with its public UDP address if the invite endpoint is stale.\n4. Leave at least one history-holding peer online while a new member rebuilds.\n\nAn invite contains the group decryption capability and grants access to the\nhistory held by connected members. Treat it like a password.\n\nTo run two isolated profiles on one computer:\n\n```powershell\n.\\target\\release\\opencord.exe --data-dir .demo\\alice --listen 127.0.0.1:40101 --name Alice --no-discovery\n.\\target\\release\\opencord.exe --data-dir .demo\\bob   --listen 127.0.0.1:40102 --name Bob   --no-discovery --connect 127.0.0.1:40101\n```\n\nCreate the group on Alice, export its invite, and import it on Bob. Direct\nconnection alone does not reveal groups; both peers must possess the invite.\n\nRun `opencord.exe --help` for every command-line option.\n\n### Keyboard shortcuts\n\n- `Ctrl+K`: quick channel switcher\n- `Ctrl+F`: search the current channel\n- `Ctrl+,`: settings\n- `Alt+Up` / `Alt+Down`: previous or next channel\n- `Escape`: close search or the active dialog\n\n## Connectivity model\n\nPeers behind incompatible carrier-grade NAT cannot always establish a new\nconnection without a reachable peer, manual port forwarding, or a relay. Since\nOpencord connects peers directly, it does not currently include hosted\nrendezvous, STUN, TURN, or relay infrastructure. Offline delivery is completed\nwhen another replica holding the message comes online.\n\n## Development checks\n\n```powershell\ncargo fmt --all -- --check\ncargo clippy --all-targets -- -D warnings\ncargo test --all-targets\ncargo build --release --locked\n```\n\nThe integration suite starts two real QUIC nodes and verifies history rebuild,\nlive exchange, encrypted channel replication, voice packets, and screen frames.\n\n### Current Windows baseline\n\nThe optimized demo profile on the development machine reached a usable window\nin about 0.57 seconds, held at 0% measured idle CPU, used 157.6 MiB resident RAM,\nand produced a 16.8 MiB executable. The Vulkan graphics driver is the largest\nresident cost; DX12 and direct OpenGL were both worse on this machine. These are\nmachine-specific prototype measurements and a baseline for further UI-renderer\nwork, not universal guarantees.\n\nCreated by [CodyKoInABox](https://github.com/CodyKoInABox) and licensed under\n[AGPL-3.0-or-later](LICENSE).\n",
+  "files": [
+    ".gitignore",
+    "Cargo.lock",
+    "Cargo.toml",
+    "LICENSE",
+    "README.md",
+    "docs/ARCHITECTURE.md",
+    "docs/PROTOCOL.md",
+    "docs/SECURITY.md",
+    "src/app.rs",
+    "src/audio.rs",
+    "src/crypto.rs",
+    "src/lib.rs",
+    "src/main.rs",
+    "src/model.rs",
+    "src/network.rs",
+    "src/node.rs",
+    "src/screen.rs",
+    "src/settings.rs",
+    "src/store.rs"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "Rust",
+      "bytes": 243169,
+      "percent": 100,
+      "color": "#dea584"
+    }
+  ],
+  "site": null
+}

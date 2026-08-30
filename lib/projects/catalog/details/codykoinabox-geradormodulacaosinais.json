@@ -1,0 +1,11 @@
+{
+  "slug": "codykoinabox-geradormodulacaosinais",
+  "branch": "main",
+  "readme": "# bom dia professor, eu sei que voce pediu para desnhar a mao mas por favor nao me da 0\r\n\r\ndecidi fazer um site que gera aqueles graficos que voce passou\r\n\r\neu nao sou o melhor desenhista entao ficou um pouco diferente do que estava nos slides\r\n\r\neu nao entendi a logica da letra D dos slides (phase modulation) entao fiz baseado em um outro grafico de phase modulation que achei no google\r\n\r\n![image](https://user-images.githubusercontent.com/125526050/223191588-ec91f3cd-81fd-4b80-9ce8-5bafd85032ee.png)\r\n\r\n\r\n ## nao estou conseguindo acessar meu github no momento entao fiz um temporario para hostear os exercicios\r\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": {
+    "url": "https://codykoinabox.github.io/geradorModulacaoSinais/"
+  }
+}

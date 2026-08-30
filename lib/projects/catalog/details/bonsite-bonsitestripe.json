@@ -1,0 +1,9 @@
+{
+  "slug": "bonsite-bonsitestripe",
+  "branch": "main",
+  "readme": "## The official repository for Bonsite | The go to website for all your bonsai needs!\n\n----------\n\n## Tech Stack\n\n#### Development\n[![My Skills](https://skillicons.dev/icons?i=nextjs,react,tailwind,postgres,nodejs,css,ts,js,jest)](https://skillicons.dev)\n#### DevOps\n[![My Skills](https://skillicons.dev/icons?i=docker,terraform,githubactions)](https://skillicons.dev)\n\n![image](https://github.com/user-attachments/assets/958c246d-687f-40ec-b281-602c2ae9297c)\n\n---------------\n\n## Descrição\n\nBonsite é uma aplicação web para gerenciar bonsais. Com ela, você pode criar, editar e visualizar informações sobre diferentes tipos de bonsais.\n\n## Funcionalidades\n\n- **Autenticação**: Login e logout de usuários.\n- **Visualização de Produtos**: Lista e detalhes dos produtos disponíveis.\n- **API**: Endpoints para integração com outras aplicações.\n\n## Tecnologias Utilizadas\n\n- **Frontend**: React, Next.js, Tailwind CSS\n- **Backend**: Node.js, Express\n- **Banco de Dados**: PostgreSQL\n- **Infraestrutura**: Docker, Terraform, Vercel\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": null
+}

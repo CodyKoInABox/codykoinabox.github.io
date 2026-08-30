@@ -1,0 +1,9 @@
+{
+  "slug": "codykoinabox-recursao-c",
+  "branch": "main",
+  "readme": "# Exercicios de recursao em C | Estrutura de Dados Manfred\n\n### Exercicio 1\nConstrua um algoritmo que use recursividade para resolver o problema matemático da seria de Pitágoras, sabendo que a série é 1, 3, 6, 10, 15, 21, ...\n\n---\n\n### Exercicio 2\nUsando conceito de recursividade construa um algoritmo, onde possuem uma função que informar o valor de um termo da série de Fibonacci. Obs. Sabendo que a série é 1, 1, 2, 3, 5, 8, 13, 21, 34, ...\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": null
+}

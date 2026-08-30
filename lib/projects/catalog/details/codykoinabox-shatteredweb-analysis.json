@@ -1,0 +1,9 @@
+{
+  "slug": "codykoinabox-shatteredweb-analysis",
+  "branch": "main",
+  "readme": "# Financial analysis of the skins from CS:GO's Shattered Web Operation\n#### also a math assignment for college\n#### Presentation: https://www.canva.com/design/DAGUaXUhLKo/RXbcU4sxBAhFPnJ3B9eYBA/edit?utm_content=DAGUaXUhLKo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton\n----------\n\n## To run:\n- Clone the project\n- Make sure Deno is installed\n- Run `Deno install`\n- Run `Deno ./server/server.ts`\n\n## Charts Routes:\n- All Skins Index: http://localhost:8000/all-skins\n- Purple Skins Index: http://localhost:8000/purple\n- Blue Skins Index: http://localhost:8000/blue\n- Light Blue Skins Index: http://localhost:8000/lightblue\n- Gray Skins Index: http://localhost:8000/gray\n- Norse Collection Index: http://localhost:8000/norse\n- Canals Collection Index: http://localhost:8000/canals\n- St. Marc Collection Index: http://localhost:8000/st-marc\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": null
+}

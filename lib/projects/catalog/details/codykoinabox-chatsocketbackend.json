@@ -1,0 +1,9 @@
+{
+  "slug": "codykoinabox-chatsocketbackend",
+  "branch": "main",
+  "readme": "# Backend for a Chat App with Socket.io\n\n### DEPLOYED USING RENDER\n\nThe frontend is hosted on Github Pages and the source code can be found on this repo -> https://github.com/CodyKoInABox/chatSocket\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": null
+}

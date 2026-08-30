@@ -1,0 +1,11 @@
+{
+  "slug": "maruan-achkar-n2pac_new",
+  "branch": "master",
+  "readme": "# POR FAVOR LEIA!\n\nBom dia professor! Essa e minha primeira vez fazendo um site e nao aprendemos nada sobre publicar um na aula, por isso, quando publico ele usando o GitHub Pages, o javascript nao funciona, quando eu rodo ele usando meu localhost funciona certinho, mas pelo GitHub Pages o javascript simplesmente some. Se quiserem testar usando o local host so baixar o repositorio, abrir no VSCode e botar esses comandos no terminal:\n\n**npm i**\n\n**npm run dev**\n\nVai aparecer um IP no terminal, so copiar ele e colar no seu navegador, preferencialmente o Chrome.\nA principio o site deve funcionar certinho, pelo menos no meu computador funcionou.\n\nSegue um video que fiz de como o site fica quando uso o localhost, ou seja, com o JavaScript funcionando: https://youtu.be/Gq3e234fQSc\n\n-Maruan =)\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": {
+    "url": "https://maruan-achkar.github.io/N2PAC_NEW/"
+  }
+}

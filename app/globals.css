@@ -191,6 +191,123 @@
   contain-intrinsic-size: auto none auto 16rem;
 }
 
+.project-module {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 12rem;
+}
+
+.project-tree summary {
+  list-style: none;
+}
+
+.project-tree summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-readme {
+  font-size: 0.925rem;
+  line-height: 1.65;
+}
+
+.project-readme > :first-child {
+  margin-top: 0;
+}
+
+.project-readme > :last-child {
+  margin-bottom: 0;
+}
+
+.project-readme h1,
+.project-readme h2,
+.project-readme h3,
+.project-readme h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.project-readme h1 {
+  font-size: 1.5rem;
+}
+
+.project-readme h2 {
+  font-size: 1.25rem;
+}
+
+.project-readme h3 {
+  font-size: 1.1rem;
+}
+
+.project-readme p,
+.project-readme ul,
+.project-readme ol,
+.project-readme pre,
+.project-readme table,
+.project-readme blockquote {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.project-readme a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.project-readme img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.project-readme pre {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  background: var(--muted);
+  padding: 0.75rem 1rem;
+}
+
+.project-readme code {
+  font-size: 0.85em;
+  background: var(--muted);
+  border-radius: calc(var(--radius) * 0.6);
+  padding: 0.1em 0.35em;
+}
+
+.project-readme pre code {
+  background: none;
+  padding: 0;
+}
+
+.project-readme blockquote {
+  border-inline-start: 3px solid var(--border);
+  padding-inline-start: 1rem;
+  color: var(--muted-foreground);
+}
+
+.project-readme table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.project-readme th,
+.project-readme td {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.6rem;
+  text-align: start;
+}
+
+.project-readme ul,
+.project-readme ol {
+  padding-inline-start: 1.25rem;
+}
+
+.project-readme hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 1.5em 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .intro {
     animation: none;

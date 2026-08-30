@@ -1,0 +1,11 @@
+{
+  "slug": "codykoinabox-multiplyapi",
+  "branch": "main",
+  "readme": "# API with Express.js for school\n\nCheck the [\"gh-pages\"](https://github.com/CodyKoInABox/multiplyAPI/tree/gh-pages) branch for the **frontend** website code!\n\n**API URL** = https://multiply-api.vercel.app/multiply  \n\nI'll write the documentation later, but to run the API, make sure to pass two query params, num1 and num2, example below:\n\nhttps://multiply-api.vercel.app/multiply?num1=5&num2=7\n\nAvailable operations: ADD, SUBTRACT, MULTIPLY, DIVIDE\n- https://multiply-api.vercel.app/add  \n- https://multiply-api.vercel.app/subtract  \n- https://multiply-api.vercel.app/multiply  \n- https://multiply-api.vercel.app/divide  \n\nExpected response: {\"result\":35}\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": {
+    "url": "https://codykoinabox.github.io/multiplyAPI/"
+  }
+}

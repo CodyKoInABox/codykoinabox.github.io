@@ -1,0 +1,21 @@
+{
+  "slug": "camarvolt-medidor",
+  "branch": "main",
+  "readme": "# medidor",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "medidor.ino",
+    "versaotop.ino"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "C++",
+      "bytes": 12982,
+      "percent": 100,
+      "color": "#f34b7d"
+    }
+  ],
+  "site": null
+}

@@ -1,0 +1,9 @@
+{
+  "slug": "codykoinabox-numberguesser",
+  "branch": "main",
+  "readme": "# numberguesser\n2-player number guessing game using WebSockets\n\n## TO RUN LOCALLY\n\nnpm i\n\nnpm run dev\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": null
+}

@@ -1,0 +1,9 @@
+{
+  "slug": "bonsite-database",
+  "branch": "main",
+  "readme": "# Bonsai PostgreSQL Database with\n\nThe official database repository for Bonsite - The go to database for all your bonsai needs!\n\n## Getting Started\n\n### Prerequisites\n\n- Docker\n- Docker Compose\n\n### Running the Project\n\n1. Clone the repository:\n\n    ```bash\n    git clone https://github.com/username/bonsai-postgres.git\n    cd bonsai-postgres\n    ```\n\n2. Build and run the Docker containers:\n\n    ```bash\n    docker-compose up -d\n\n    quit: docker-compose down -v\n    ```\n\n3. Access the PostgreSQL database:\n   - Host: ``\n   - Port: ``\n   - User: ``\n   - Password: ``\n   - Database: ``\n",
+  "files": [],
+  "truncated": false,
+  "languages": [],
+  "site": null
+}

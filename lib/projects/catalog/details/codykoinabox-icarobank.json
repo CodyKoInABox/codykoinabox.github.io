@@ -1,0 +1,22 @@
+{
+  "slug": "codykoinabox-icarobank",
+  "branch": "main",
+  "readme": "## front do icarobank para apresentacao da edicarsia\n\n# slides -> https://canva.link/yomzjhymg4scjvm\n",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.html"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "HTML",
+      "bytes": 30973,
+      "percent": 100,
+      "color": "#e34c26"
+    }
+  ],
+  "site": {
+    "url": "https://codykoinabox.github.io/icarobank/"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "slug": "codykoinabox-codytris",
+  "branch": "main",
+  "readme": "# Codytris\n\nCodytris is a polished, browser-based falling-block puzzle game created by `CodyKoInABox`. It combines classic seven-piece gameplay with a clean, modern, responsive interface.\n\nThe application is fully static, has no backend, and is prepared for deployment from a GitHub repository subpath.\n\n## Features\n\n- Seven standard tetrominoes generated with a deterministic seven-bag randomizer\n- SRS-style clockwise and counter-clockwise rotation with wall kicks\n- Responsive movement, soft drop, hard drop, ghost piece, and hold queue\n- Classic line scoring, progressive levels, and increasing gravity speed\n- Ten selectable modes with separate personal bests\n- A short lock delay for precise floor movement\n- Pause/resume, guarded restart, game-over handling, and automatic focus-loss pause\n- Persistent per-mode high scores and local lifetime statistics\n- Keyboard controls plus visible touch controls and board gestures\n- Persistent settings with conflict-safe keyboard remapping\n- Optional ghost piece, motion effects, and mobile touch vibration\n- Responsive portrait, landscape, tablet, and desktop layouts\n- Accessible controls, visible focus states, high contrast, and reduced-motion support\n- Pure, deterministic game rules covered by Vitest\n- GitHub Pages workflow with automatic repository subpath detection\n\nNo images, fonts, audio, game engines, or other runtime assets are downloaded.\n\n## Screenshots\n\nScreenshots are intentionally not included yet. After publishing, add desktop and mobile captures under a `docs/screenshots/` directory and replace this note with Markdown images, for example:\n\n```md\n![Codytris desktop game](docs/screenshots/desktop.png)\n![Codytris mobile controls](docs/screenshots/mobile.png)\n```\n\n## Technology\n\n- React 18\n- TypeScript\n- Vite 8\n- Modern CSS\n- Vitest\n- ESLint\n- GitHub Actions and GitHub Pages\n\nThe board uses a 200-cell CSS grid rather than Canvas. At this scale, DOM rendering remains fast while preserving sharp responsive cells, straightforward animation, semantic surrounding controls, and maintainable styling. The timing loop only commits state when gameplay changes, so it does not force a React render on every display frame.\n\n## Local development\n\nRequirements: Node.js 20 or newer and npm.\n\n```bash\nnpm install\nnpm run dev\n```\n\nVite prints the local URL, normally `http://localhost:5173`.\n\n## Available scripts\n\n| Command | Purpose |\n| --- | --- |\n| `npm run dev` | Start the Vite development server |\n| `npm run typecheck` | Run strict TypeScript validation |\n| `npm run lint` | Lint the full codebase with zero warnings allowed |\n| `npm test` | Run the core game test suite once |\n| `npm run test:watch` | Run tests in watch mode |\n| `npm run build` | Typecheck and create the production build in `dist/` |\n| `npm run preview` | Preview the production build locally |\n\nRun the complete local quality check with:\n\n```bash\nnpm run typecheck\nnpm run lint\nnpm test\nnpm run build\n```\n\n## Controls\n\n| Action | Keyboard | Touch |\n| --- | --- | --- |\n| Move left / right | Left / Right arrows | Left / right buttons or horizontal swipe |\n| Soft drop | Down arrow | Down button or downward swipe |\n| Rotate clockwise | Up arrow | Rotate button or tap the board |\n| Rotate counter-clockwise | `Z` | — |\n| Hard drop | Space | Drop button |\n| Hold | `C` | Hold button |\n| Pause / resume | Escape | Pause button |\n| Restart | Shift + `R` | Restart button on larger layouts |\n\nEvery keyboard control can be changed from the in-game settings panel. Conflicting assignments are swapped so no action becomes accidentally unbound. Settings persist in `localStorage` alongside the high score.\n\nRestarting an active game always requires confirmation. The game also pauses automatically when its tab becomes hidden, the browser window loses focus, or settings are opened.\n\n## Game modes\n\n| Mode | Rules |\n| --- | --- |\n| Regular | The original Codytris rules. Gravity speeds up every 10 cleared lines. |\n| Zen | Gravity stays at the starting speed, even as levels and scoring progress. |\n| Rush | Gravity speeds up every 5 cleared lines for a quicker difficulty curve. |\n| Survival | Starts at level 5 and disables hold. |\n| Fog | Hides the ghost piece and all next-piece previews. |\n| Overdrive | Starts at level 3 and speeds up every 3 cleared lines. |\n| Turbo | Starts at level 7 with gravity fixed at a relentless 275 ms interval. |\n| Draft | Shows only one upcoming piece and disables hold. |\n| Contract | Targets 1, 2, 3, then 4 lines at once; matching clears score triple. |\n| Zero-G | Disables automatic gravity so every descent is player-controlled. |\n\nChoose a mode before starting, after game over, or from the restart confirmation. Each mode keeps its own local personal best; an existing pre-mode high score is retained as the Regular record.\n\n## Local statistics\n\nOpen the statistics button in the top bar to see lifetime runs, score, lines, four-line clears, and per-mode records. These statistics are stored only in the current browser using `localStorage`; Codytris does not upload or share them. Clearing the site's browser data also clears the saved statistics.\n\nRuns are counted when they start. Progress is saved in small batches while playing and flushed when a run ends, restarts, or the page closes, avoiding storage work in the animation loop.\n\n## Architecture\n\n```text\nsrc/\n├── components/       React board, preview, overlay, and touch controls\n├── game/             Pure rules, tetromino data, randomizer, types, persistence\n├── hooks/            Frame-rate-independent timing and input lifecycle\n├── settings/         Keybind definitions, preference validation, and tests\n├── App.tsx           Application layout and UI orchestration\n└── styles.css        Responsive theme, feedback, and accessibility states\n```\n\nThe engine is independent from React. User input produces pure state transitions, while a `requestAnimationFrame` loop accumulates elapsed milliseconds for gravity and lock timing. As a result, falling speed is based on real elapsed time rather than monitor refresh rate.\n\n## Configuration\n\nRepository and project metadata live in one place: [`site.config.ts`](site.config.ts).\n\nBefore publishing, update:\n\n- `repositoryName` if the GitHub repository is not named `codytris`.\n- `repositoryUrl` once the final public URL is known. This activates the repository link in the footer.\n- `githubOwner` if the repository moves to another account.\n\nFor GitHub Actions, Vite automatically reads the repository name from `GITHUB_REPOSITORY` and emits URLs under `/<repository-name>/`. Local development always uses `/`. You can override either environment with `VITE_BASE_PATH`, including the leading slash—for example, `VITE_BASE_PATH=/my-project/ npm run build`.\n\n## GitHub Pages deployment\n\nThe workflow at [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) validates and deploys the project after a push to `main`. It runs type checking, linting, tests, and the production build before uploading `dist/` to Pages. The build also includes `.nojekyll`.\n\nTo publish:\n\n1. Create the GitHub repository and update `site.config.ts` if its name differs.\n2. Push this project to the repository's `main` branch.\n3. In GitHub, open **Settings → Pages**.\n4. Under **Build and deployment**, select **GitHub Actions** as the source.\n5. Run **Deploy to GitHub Pages** from the Actions tab, or push a new commit to `main`.\n\nFor a user or organization site repository named `<owner>.github.io`, set `VITE_BASE_PATH=/` in the workflow build environment because that kind of Pages site is hosted at the domain root.\n\nThis repository only prepares the workflow; no deployment is performed during local development.\n\n## Customization\n\n- Change public project metadata in `site.config.ts`.\n- Adjust the Codytris color palette and interface tokens near the top of `src/styles.css`.\n- Tune gravity in `gravityInterval()` and the lock delay in `src/hooks/useGame.ts`.\n- Keep changes to rules in `src/game/` so they remain independently testable.\n\n## License\n\nCodytris is open-source software released under the [MIT License](LICENSE). Copyright © 2026 Maruan Biasi El Achkar.\n",
+  "files": [
+    ".gitattributes",
+    ".github/workflows/deploy-pages.yml",
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "eslint.config.js",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "public/.nojekyll",
+    "public/LICENSE.txt",
+    "public/favicon.svg",
+    "site.config.ts",
+    "src/App.tsx",
+    "src/components/GameBoard.tsx",
+    "src/components/GameOverlay.tsx",
+    "src/components/ModePicker.tsx",
+    "src/components/PiecePreview.tsx",
+    "src/components/SettingsDialog.tsx",
+    "src/components/StatsDialog.tsx",
+    "src/components/TouchControls.tsx",
+    "src/game/engine.test.ts",
+    "src/game/engine.ts",
+    "src/game/modes.ts",
+    "src/game/randomizer.ts",
+    "src/game/storage.test.ts",
+    "src/game/storage.ts",
+    "src/game/tetrominoes.ts",
+    "src/game/types.ts",
+    "src/hooks/useGame.ts",
+    "src/hooks/useSettings.ts",
+    "src/main.tsx",
+    "src/settings/settings.test.ts",
+    "src/settings/settings.ts",
+    "src/styles.css",
+    "src/vite-env.d.ts",
+    "tsconfig.json",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "TypeScript",
+      "bytes": 84065,
+      "percent": 68.95038590562741,
+      "color": "#3178c6"
+    },
+    {
+      "name": "CSS",
+      "bytes": 36577,
+      "percent": 30.000574142272455,
+      "color": "#663399"
+    },
+    {
+      "name": "JavaScript",
+      "bytes": 716,
+      "percent": 0.5872655243969456,
+      "color": "#f1e05a"
+    },
+    {
+      "name": "HTML",
+      "bytes": 563,
+      "percent": 0.4617744277031849,
+      "color": "#e34c26"
+    }
+  ],
+  "site": {
+    "url": "https://codykoinabox.github.io/codytris/"
+  }
+}

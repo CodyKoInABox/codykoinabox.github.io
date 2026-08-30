@@ -1,0 +1,30 @@
+{
+  "slug": "codykoinabox-pri-petshop",
+  "branch": "main",
+  "readme": "# BlueDog - Petshop E-commerce",
+  "files": [
+    "README.md",
+    "duck1.png",
+    "duck2.png",
+    "index.html",
+    "styles.css"
+  ],
+  "truncated": false,
+  "languages": [
+    {
+      "name": "HTML",
+      "bytes": 5049,
+      "percent": 53.925024030759374,
+      "color": "#e34c26"
+    },
+    {
+      "name": "CSS",
+      "bytes": 4314,
+      "percent": 46.074975969240626,
+      "color": "#663399"
+    }
+  ],
+  "site": {
+    "url": "https://codykoinabox.github.io/pri-petshop/"
+  }
+}
