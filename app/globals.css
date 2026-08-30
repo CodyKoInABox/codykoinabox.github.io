@@ -186,6 +186,11 @@
   animation: intro-in 0.35s ease-out both;
 }
 
+.project-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 16rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .intro {
     animation: none;

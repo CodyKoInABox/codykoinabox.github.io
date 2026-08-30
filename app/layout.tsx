@@ -4,6 +4,7 @@ import { Geist } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { site } from "@/lib/site"
 import { themeInitScript } from "@/lib/theme"
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 import "./globals.css"
 
@@ -26,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="min-h-svh bg-background text-foreground antialiased">
-        {children}
+        <TooltipProvider delay={300}>{children}</TooltipProvider>
       </body>
     </html>
   )
