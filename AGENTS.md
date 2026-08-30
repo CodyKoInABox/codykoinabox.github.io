@@ -1,3 +1,21 @@
+# codykoinabox.github.io
+
+Portfólio pessoal estático. Sem backend.
+
+**Stack:** Next.js 16 (`output: "export"`), React 19, Tailwind 4, shadcn `base-nova`. Hosting: Firebase (`out/`).
+
+**Onde mora o quê**
+- perfil/links: `lib/site.ts`
+- copy i18n: `lib/i18n/messages.ts` (`en` / `pt`, rotas `/[locale]`)
+- tema: `lib/theme.ts` (light/dark + system)
+- UI: `components/`, shadcn em `components/ui/`
+
+**Regras**
+- 100% estático. Sem API routes, sem server state.
+- Não rodar o app. Só editar código.
+- Não inventar design system. shadcn + tokens do `globals.css`.
+- Pouca copy. Não inchar página.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know
