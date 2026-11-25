@@ -1,9 +1,0 @@
-{
-  "slug": "codykoinabox-fintechmvp",
-  "branch": "main",
-  "readme": "# MVP Fintech\n\n##Exercicio 1:\n\n### Cliente\nString nome\n\nint idade\n\nEndereco endereco\n\n\n### Endereco\nString estado\n\nString cidade\n\nString bairro\n\nString rua\n\nint numero\n\nString complemento\n\n\n### Conta (herda dados de transferencias e visualicacaoDeConta)\nCliente titular\n\nint ID\n\ndouble saldo\n\ndouble limite\n\n### Transferencias\nint receber()\n\nint pagar()\n\ndouble sacarDinheiro()\n\n### visualicacaoDeConta\ndouble verificarSaldo()\n",
-  "files": [],
-  "truncated": false,
-  "languages": [],
-  "site": null
-}

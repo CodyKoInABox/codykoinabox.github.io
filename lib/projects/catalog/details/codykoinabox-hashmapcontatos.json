@@ -1,9 +1,0 @@
-{
-  "slug": "codykoinabox-hashmapcontatos",
-  "branch": "main",
-  "readme": "# hashMapContatos\nJava Hash Map exercise for school\n\n-> O programa salva a lista de contatos no disco apenas quando a opcao 5 do menu (\"Sair\") for selecionada.\n\n\n-> O arquivo com as informacoes sera criado na mesma pasta em que o arquivo Main.java esta.\n\n\nTODO: Documentar melhor\n",
-  "files": [],
-  "truncated": false,
-  "languages": [],
-  "site": null
-}

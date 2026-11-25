@@ -1,9 +1,0 @@
-{
-  "slug": "codykoinabox-kafka-example",
-  "branch": "main",
-  "readme": "kafka not kafta unfortunally\n\nhere are the presentation's slides:\n\nhttps://www.canva.com/design/DAGfZwk-njM/_eGC784Z0rb5SPxTn0XTlQ/view?utm_content=DAGfZwk-njM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h21ca22dc8e\n\n\n\nhow to run everything:\n- clone the repo\n- get docker running\n- run the docker compose: ``docker-compose up -d``\n- install all js packages: ``npm install``\n- then on three separate terminals:\n- run the server: ``node server.js``\n- run the website: ``http-server``\n- run the consumer: ``node consumer.js``\n- pretty sure thats it hopefully it works during the presentation",
-  "files": [],
-  "truncated": false,
-  "languages": [],
-  "site": null
-}

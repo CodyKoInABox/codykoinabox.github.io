@@ -1,9 +1,0 @@
-{
-  "slug": "codykoinabox-farmcrud",
-  "branch": "main",
-  "readme": "## mysql CRUD API with express.js for school\n\n# ENDPOINTS:\n\n### /criar/:nome/:ano\n\nCria uma nova entrada na tabela com o nome e ano escolhidos.\n\n-----\n\n### /lista\n\nLista todas as informacoes da tabela;.\n\n-----\n\n### /atualizar/:codigo/:nome/:ano\n\nAtualiza o nome e ano de uma entrada da tabela baseado no seu codigo.\n\n-----\n\n### /deletar/:codigo\n\nDeleta uma entrada da tabela baseado no seu codigo.\n\n-----\n\n### /codigo/:codigo\n\nLista uma entrada da tabela baseado no seu codigo.\n\n-----\n\n\n",
-  "files": [],
-  "truncated": false,
-  "languages": [],
-  "site": null
-}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>codykoinabox.com</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --page: #f4efe6;
+        --link: #143a6e;
+        background: var(--page);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --page: #e0e1e6;
+          --link: #12315c;
+        }
+      }
+
+      @media (forced-colors: active) {
+        :root {
+          --page: Canvas;
+          --link: LinkText;
+        }
+      }
+
+      html {
+        background: var(--page);
+      }
+
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        background: var(--page);
+      }
+
+      a {
+        display: grid;
+        place-items: center;
+        box-sizing: border-box;
+        min-height: 100dvh;
+        padding: 1.5rem;
+        color: var(--link);
+        font-family: system-ui, sans-serif;
+        font-size: clamp(1.5rem, 5.5vw, 4.5rem);
+        font-weight: 600;
+        line-height: 1.2;
+        text-align: center;
+        text-underline-offset: 0.14em;
+        overflow-wrap: anywhere;
+      }
+
+      a:focus-visible {
+        outline: 3px solid var(--link);
+        outline-offset: -8px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="https://codykoinabox.com/">https://codykoinabox.com/</a>
+  </body>
+</html>

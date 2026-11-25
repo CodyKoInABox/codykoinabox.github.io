@@ -1,9 +1,0 @@
-{
-  "slug": "bugbuddies2-censurador",
-  "branch": "main",
-  "readme": "### para rodar o programa\n```python\npython main.py\n```\n\n### para rodar os testes\n```python\npython -m unittest test.py\n```\n\n----------\n\n### arquivos uteis\n- **texto.txt** (bota o texto a ser censurado)\n- **lista.txt** (lista de palavras para censurar)\n- **censurado.txt** (texto censurado)",
-  "files": [],
-  "truncated": false,
-  "languages": [],
-  "site": null
-}
